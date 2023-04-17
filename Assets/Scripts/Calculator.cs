@@ -12,32 +12,28 @@ public class Calculator : MonoBehaviour
     float fgts = 0.08f;
 
     [SerializeField] TMP_Text valoresCTPS;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+    void Start() {}
+    void Update() {}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void CalcularDaCTPS(TMP_InputField valor)
     {
-        print(valor.text);
+        //print(valor.text);
         string valorReal = RemoveNonNumericCharacters(valor.text);
-        valorReal = (float.Parse(valorReal) / 100).ToString();
-        print(valorReal);
+        valorReal = (float.Parse(valorReal) / 100).ToString("F");
+        
+        string inssValor = (float.Parse(valorReal) * inssEmpregador).ToString("F");
+        string fgtsValor = (float.Parse(valorReal) * fgts).ToString("F");
+        string feriasValor = ((float.Parse(valorReal) / 12) + ((float.Parse(valorReal) / 3) / 12)).ToString("F");
+        string decimo3 = ((float.Parse(valorReal) / 12)).ToString("F");
+        string total = (float.Parse(valorReal)+float.Parse(inssValor)+float.Parse(fgtsValor)+float.Parse(feriasValor)+float.Parse(decimo3)).ToString("F");
 
-        valoresCTPS.text = "R$" + valorReal + //valor CTPS
-                           "/n/n R$" + float.Parse(valorReal) * inssEmpregador + //valor INSS Empregador
-                           "/n R$" + ((float.Parse(valorReal) / 12) + ((float.Parse(valorReal) / 3) / 12)) +  //ferias
-                           "/n R$" + ((float.Parse(valorReal) / 12)) + "/n" + //13
-                           "/n /n R$" + "total";
-
-
-
+        valoresCTPS.text = "R$" + valorReal + 
+                           "\n \n \n \n" + "R$" + inssValor +
+                           "\n \n"       + "R$" + fgtsValor +
+                           "\n \n \n"    + "R$" + feriasValor +
+                           "\n \n \n \n" + "R$" + decimo3 +
+                           "\n \n \n"    + "R$" + total;
     }
 
     public string RemoveNonNumericCharacters(string input)
