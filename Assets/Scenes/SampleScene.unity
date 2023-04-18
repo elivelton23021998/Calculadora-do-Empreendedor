@@ -343,7 +343,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 5
   m_lineSpacingMax: 0
   m_paragraphSpacing: 40
   m_charWidthMaxAdj: 0
@@ -4325,7 +4325,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "R$ 00000,00\n\n\n R$ 00000,00\n\n R$ 00000,00\n\n R$ 00000,00\n\n\n R$
-    00000,00\n\n R$ 00000,00\n"
+    00000,00\n\n R$ 00000,00"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4575,7 +4575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &876688586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5555,7 +5555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &953874803
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6624,7 +6624,7 @@ GameObject:
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1165316207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11920,7 +11920,7 @@ GameObject:
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2024025005
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12329,7 +12329,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144710674}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 388ceef29015f0b45b5a8a3301f3aa8c, type: 3}
   m_Name: 

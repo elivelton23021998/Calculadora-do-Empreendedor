@@ -11,6 +11,8 @@ public class Calculator : MonoBehaviour
 {
     float inssEmpregador = 0.2f;
     float fgts = 0.08f;
+    int mesesAno=12;
+    int tercoFerias=3;
 
     TMP_Text tabelaAlvo;
     
@@ -24,8 +26,8 @@ public class Calculator : MonoBehaviour
 
         string inssValor = (float.Parse(valorReal) * inssEmpregador).ToString("N2");
         string fgtsValor = (float.Parse(valorReal) * fgts).ToString("N2");
-        string feriasValor = ((float.Parse(valorReal) / 12) + ((float.Parse(valorReal) / 3) / 12)).ToString("N2");
-        string decimo3 = ((float.Parse(valorReal) / 12)).ToString("N2");
+        string feriasValor = ((float.Parse(valorReal) / mesesAno) + ((float.Parse(valorReal) / tercoFerias) / mesesAno)).ToString("N2");
+        string decimo3 = ((float.Parse(valorReal) / mesesAno)).ToString("N2");
         string total = (float.Parse(valorReal)+float.Parse(inssValor)+float.Parse(fgtsValor)+float.Parse(feriasValor)+float.Parse(decimo3)).ToString("N2");
 
         total = string.Format("<b><color=red>R$ {0:N2}</color></b>", float.Parse(total));
@@ -49,8 +51,8 @@ public class Calculator : MonoBehaviour
 
         string inssValor = (valorFinal * inssEmpregador).ToString("N2");
         string fgtsValor = (valorFinal * fgts).ToString("N2");
-        string feriasValor = ((valorFinal / 12) + ((valorFinal / 3) / 12)).ToString("N2");
-        string decimo3 = ((valorFinal / 12)).ToString("N2");
+        string feriasValor = ((valorFinal / mesesAno) + ((valorFinal / tercoFerias) / mesesAno)).ToString("N2");
+        string decimo3 = ((valorFinal / mesesAno)).ToString("N2");
         string total = (float.Parse(valorReal) - float.Parse(inssValor) - float.Parse(fgtsValor) - float.Parse(feriasValor) - float.Parse(decimo3)).ToString("N2");
         total = string.Format("<b><color=red>R$ {0:N2}</color></b>", float.Parse(total));
         valorReal = string.Format("<b>R$ {0:N2}</b>", float.Parse(valorReal));
