@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 using System.Text.RegularExpressions;
-using UnityEngine.Windows;
-using System.Drawing;
 
 public class Calculator : MonoBehaviour
 {
