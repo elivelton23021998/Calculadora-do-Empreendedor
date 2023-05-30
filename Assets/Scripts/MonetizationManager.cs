@@ -1,37 +1,72 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Advertisements;
-using System.Collections;
+using GoogleMobileAds.Api;
 
-public class MonetizationManager : MonoBehaviour, IUnityAdsInitializationListener
+public class MonetizationManager : MonoBehaviour
 {
-    [SerializeField] BannerPosition _bannerPosition = BannerPosition.BOTTOM_CENTER;
-
-    [SerializeField] string _adGameId = "5251522"; // This will remain null for unsupported platforms.
-    [SerializeField] string _adUnitId = "Banner_Android"; // This will remain null for unsupported platforms.
-
-    void Start()
+    [SerializeField] enum AdSizeBanner
     {
-        // Cria um objeto initializationListener
-        var initializationListener = this as IUnityAdsInitializationListener;
+        Banner,
+        IABBanner,
+        Leaderboard,
+        MediumRectangle,
+        SmartBanner,
+    };  
 
-        // Verifica se o objeto initializationListener não está nulo
-        if (initializationListener != null)
+    BannerView bannerView;
+    AdSize bannerSize;
+    [SerializeField] string adUnitId;
+    [SerializeField] AdSizeBanner tamanhoBanner;
+    [SerializeField] AdPosition posicaoBanner;
+
+
+    // Start is called before the first frame update
+    public void Start()
+    {
+        switch (tamanhoBanner)
         {
-            // Inicializa o Unity Advertisement com o initializationListener atribuído
-            Advertisement.Initialize(_adGameId, true, initializationListener);
+            case AdSizeBanner.Banner: bannerSize = AdSize.Banner;
+                break;
+
+            case AdSizeBanner.IABBanner: bannerSize = AdSize.IABBanner;
+                break;
+
+            case AdSizeBanner.Leaderboard:bannerSize = AdSize.Leaderboard;
+                break;
+
+            case AdSizeBanner.MediumRectangle: bannerSize = AdSize.MediumRectangle;
+                break;
+
+            case AdSizeBanner.SmartBanner:
+                bannerSize = AdSize.SmartBanner;
+                break;
         }
+
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize(initStatus => { });
+
+        this.RequestBanner();
+    }
+    private void Update()
+    {
     }
 
-    public void OnInitializationComplete()
+    private void RequestBanner()
     {
-        // Implemente aqui o código a ser executado após a inicialização do Advertisement
-        Advertisement.Banner.SetPosition(_bannerPosition);
-        Advertisement.Banner.Show(_adUnitId);
-    }
+#if UNITY_ANDROID
+            // adUnitId = "ca-app-pub-3940256099942544/6300978111";
+            adUnitId = "ca-app-pub-8255768500301892/8157342294";
+#elif UNITY_IPHONE
+            adUnitId = "ca-app-pub-8255768500301892/8157342294"; 
+#else
+            adUnitId = "unexpected_platform";
+#endif
 
-    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
-    {
-        // Implemente aqui o código a ser executado em caso de falha na inicialização do Advertisement
+        // Create a 320x50 banner at the top of the screen.
+        this.bannerView = new BannerView(adUnitId, bannerSize, posicaoBanner);
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+
+        // Load the banner with the request.
+        this.bannerView.LoadAd(request);
     }
 }

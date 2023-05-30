@@ -14,7 +14,7 @@ public class Calculator : MonoBehaviour
     void Start() {}
     void Update() {}
 
-    public void CalcularDaCTPS(TMP_InputField valor) //pega o valor que ta na carteira e calcula todos os custos mensais
+    public void CalcularDaCTPS(TMP_InputField valor) //pega o valor que ta na carteira e calcula tods os custos mensais
     {
         string valorReal = RemoveNonNumericCharacters(valor.text);
         valorReal = (float.Parse(valorReal) / 100).ToString("N2");

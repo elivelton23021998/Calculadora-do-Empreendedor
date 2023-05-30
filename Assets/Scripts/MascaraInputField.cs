@@ -1,5 +1,4 @@
 using System.Globalization;
-using UnityEngine.UI;
 using UnityEngine;
 using System;
 using TMPro;
@@ -19,6 +18,7 @@ public class MascaraInputField : MonoBehaviour
 
         inputField.onEndEdit.AddListener(OnEndEdit);
         inputField.onSelect.AddListener(OnSelect);
+        inputField.onValueChanged.AddListener(OnValueChanged);
     }
 
     private void OnSelect(string value)
@@ -31,7 +31,7 @@ public class MascaraInputField : MonoBehaviour
     {
         if (!value.StartsWith(currencyFormat.CurrencySymbol))
         {
-            // Adiciona o símbolo "R$" no início do valor
+            // Adiciona o simbolo "R$" no inicio do valor
             value = currencyFormat.CurrencySymbol + value;
         }
 
@@ -41,6 +41,15 @@ public class MascaraInputField : MonoBehaviour
         if (Decimal.TryParse(value, NumberStyles.Currency, currencyFormat, out amount))
         {
             inputField.text = currencyFormat.CurrencySymbol + amount.ToString("N2", currencyFormat);
+        }
+
+    }
+
+    private void OnValueChanged(string value)
+    {
+        if (value.Contains("\n"))
+        {
+            inputField.text = value.Replace("\n", "");
         }
     }
 }
